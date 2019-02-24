@@ -289,7 +289,7 @@ def async_setup(hass, config):
         for component, entities in tasks.items():
             _LOGGER.info("discovering " + str(len(tasks)) + " platforms")
             async_listen_platform(hass, component, async_paltform_discoverd)
-            hass.async_add_job(async_load_platform(hass, component, DOMAIN, {KEY_ST_URL: st_url, KEY_ST_HEADERS: st_headers, KEY_DEVICES: entities}))
+            hass.async_add_job(async_load_platform(hass, component, DOMAIN, {KEY_ST_URL: st_url, KEY_ST_HEADERS: st_headers, KEY_DEVICES: entities}, config))
 
         """register to event launched when the smartapp is uninstalled"""
         hass.bus.async_listen_once(EVENT_SMARTAPP_UNINSTALLED, smartapp_uninstalled_callback)
